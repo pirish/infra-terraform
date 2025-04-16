@@ -24,7 +24,8 @@ resource "aws_vpc" "main" {
 }
 
 module "subnet_addrs" {
-  source = "hashicorp/subnets/cidr"
+  source  = "hashicorp/subnets/cidr"
+  version = "v1.0.0"
 
   base_cidr_block = var.vpc_cidr
   networks = [
@@ -48,7 +49,8 @@ module "subnet_addrs" {
 }
 
 module "subnet_addrs_public" {
-  source = "hashicorp/subnets/cidr"
+  source  = "hashicorp/subnets/cidr"
+  version = "v1.0.0"
 
   base_cidr_block = module.subnet_addrs.network_cidr_blocks["public"]
   networks = [
