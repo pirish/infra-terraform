@@ -9,3 +9,7 @@ output "https_rules" {
 output "eni_id" {
   value = module.instance_default.eni_id
 }
+
+output "id" {
+  value = module.instance_default.id
+}

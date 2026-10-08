@@ -149,6 +149,12 @@ resource "aws_route_table_association" "public_subnet_association" {
   subnet_id      = each.value.id
   route_table_id = aws_route_table.public.id
 }
+
+resource "aws_route_table_association" "private_subnet_association" {
+  for_each       = aws_subnet.private
+  subnet_id      = each.value.id
+  route_table_id = aws_vpc.main.main_route_table_id
+}
 #
 # Nat instance
 module "instance_label" {
@@ -172,6 +178,10 @@ module "nat_instance" {
   ebs_key_arn          = aws_kms_key.ec2_key.arn
 
   context = module.instance_label.context
+}
+
+resource "aws_eip" "nat" {
+  instance = module.nat_instance.id
 }
 
 resource "aws_route" "private_nat" {

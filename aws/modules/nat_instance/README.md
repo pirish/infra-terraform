@@ -1,3 +1,8 @@
+## Credit
+
+https://github.com/int128/terraform-aws-nat-instance
+https://docs.aws.amazon.com/vpc/latest/userguide/work-with-nat-instances.html#EIP_Disable_SrcDestCheck
+
 ## Requirements
 
 No requirements.

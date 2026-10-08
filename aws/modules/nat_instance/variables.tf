@@ -119,6 +119,23 @@ variable "allow_all_outbound" {
 #   default     = null
 # }
 
+
+
+variable "spot_instance_config" {
+  type = object({
+    enable             = optional(bool, false)
+    max_price          = optional(string, "0.0")
+    shutdown_behavior  = optional(string, "stop")
+    spot_instance_type = optional(string, "persistent")
+  })
+  default = {
+    enable             = false
+    max_price          = "0.0"
+    shutdown_behavior  = "terminate"
+    spot_instance_type = "one-time"
+  }
+}
+
 # variable "instance_config" {
 #   type = object({
 #     app_identifier          = string

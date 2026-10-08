@@ -145,6 +145,19 @@ resource "aws_instance" "default" {
     # )
   }
 
+  dynamic "instance_market_options" {
+    for_each = var.spot_instance_config.enable == true ? [1] : []
+    content {
+      market_type = "spot"
+      spot_options {
+        max_price                      = var.spot_instance_config.max_price
+        spot_instance_type             = var.spot_instance_config.spot_instance_type
+        instance_interruption_behavior = var.spot_instance_config.shutdown_behavior
+
+      }
+    }
+
+  }
   metadata_options {
     http_endpoint = "enabled"
     http_tokens   = "optional"
